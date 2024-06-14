@@ -1,12 +1,14 @@
 Package: noegletalR
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Tidy Tibbles of Noegletal
+Version: 0.1.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Frederik", "Larsen", , "frlars21@student.aau.dk")
+Description: A simple R utility that parses csv files from noegletal.dk into tidy tibbles.
+License: `use_mit_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
+Imports: 
+    dplyr,
+    readr,
+    stringr
