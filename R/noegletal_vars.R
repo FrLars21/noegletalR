@@ -40,8 +40,18 @@ noegletal_vars <- function() {
 
   variable_definitions <- source_code |>
     rvest::html_elements("div.ntal") |>
-    rvest::html_elements(xpath = "following-sibling::div[contains(@class, 'txt')][1]") |>
-    rvest::html_text()
+    lapply(function(x) {
+      siblings <- x |>
+        rvest::html_nodes(xpath = "following-sibling::*")
+
+      # Extract all siblings until the next div.ntal
+      relevant_siblings <- siblings[cumsum(rvest::html_name(siblings) == "div" &
+                                             grepl("ntal", rvest::html_attr(siblings, "class"))) == 0]
+
+      # Extract text from the HTML from the relevant siblings a combine into one string
+      paste(sapply(relevant_siblings, rvest::html_text2), collapse = "\n\n")
+    }) |>
+    unlist()
 
   cbind(variable_ids, variable_names, variable_definitions) |>
     tibble::as_tibble()

@@ -61,7 +61,7 @@ noegletal_tidy <- function(file) {
     ) |>
     # Coerce to numeric, values of "M" or "U" (missing, according to
     # noegletal.dk), can't be coerced and is therefore made NA.
-    dplyr::mutate(value = as.numeric(.data$value))
+    dplyr::mutate(value = suppressWarnings(as.numeric(.data$value)))
 
   # Pivot to tidy format
   data <- data |>
@@ -71,5 +71,6 @@ noegletal_tidy <- function(file) {
       values_from = .data$value
     )
 
+  # TODO: make muni_code, muni_name, year as factors.
   return(data)
 }

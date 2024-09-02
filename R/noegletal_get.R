@@ -108,7 +108,7 @@ noegletal_wrangle <- function(df) {
     ) |>
     # Coerce to numeric, values of "M" (missing, according to Noegletal.dk),
     # can't be coerced and is therefore made NA.
-    dplyr::mutate(value = as.numeric(.data$value)) |>
+    dplyr::mutate(value = suppressWarnings(as.numeric(.data$value))) |>
     tidyr::pivot_wider(
       id_cols = c(.data$muni_code, .data$muni_name, .data$year),
       names_from = .data$variable,
@@ -136,6 +136,8 @@ noegletal_get <- function(muni_codes = ALLOWED_MUNI_CODES,
   html_content <- noegletal_scrape(muni_codes, years, variable_ids)
   parsed_data <- noegletal_parse_html(html_content, n_munis = length(muni_codes), years)
   noegletal_wrangle(parsed_data)
+
+  # TODO: make muni_code, muni_name, year as factors.
 }
 
 #' Validate input parameters
