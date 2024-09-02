@@ -2,3 +2,5 @@
 
 export(noegletal_get)
 export(noegletal_tidy)
+export(noegletal_vars)
+importFrom(rlang,.data)

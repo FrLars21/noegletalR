@@ -2,20 +2,24 @@
 % Please edit documentation in R/noegletal_get.R
 \name{noegletal_get}
 \alias{noegletal_get}
-\title{Automatically get requested data from noegletal.dk}
+\title{Get data from noegletal.dk}
 \usage{
-noegletal_get(muni_codes, years, variable_ids)
+noegletal_get(
+  muni_codes = ALLOWED_MUNI_CODES,
+  years = ALLOWED_YEARS,
+  variable_ids
+)
 }
 \arguments{
-\item{muni_codes}{A vector of municipalities to include in the dataset, as identified by their official municipality codes.}
+\item{muni_codes}{Vector of municipality codes}
 
-\item{years}{A vector of years to include in the dataset (2007-current).}
+\item{years}{Vector of years}
 
-\item{variables}{A vector of variables (nøgletal) to include in the dataset, as identified by the internal noegletal.dk variable id's.}
+\item{variable_ids}{Vector of variable IDs}
 }
 \value{
-A tidy \code{tibble} with one row for each municipality-year, and one column for each included variable (nøgletal).
+Tidy tibble with requested data
 }
 \description{
-\code{noegletal_get} make it possible to get data from noegletal.dk directly from the comfort of R.
+Get data from noegletal.dk
 }
