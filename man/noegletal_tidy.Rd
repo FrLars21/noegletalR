@@ -10,16 +10,16 @@ noegletal_tidy(file)
 \item{file}{Path to a csv file downloaded from noegletal.dk.}
 }
 \value{
-A tidy \code{\link[tibble:tibble]{tibble::tibble()}} with one row for each municipality-year, and one column for each included variable (nøgletal).
+A tidy \code{\link[tibble:tibble]{tibble::tibble()}} with one row for each municipality-year,
+and one column for each included variable (nøgletal).
 }
 \description{
-\code{noegletal_tidy} takes a CSV-file downloaded from noegletal.dk as input and parses it into a tidy \code{tibble}.
-This \code{tibble} has one row for each municipality-year, a \code{muni_code} column, a \code{year} column and a column for each \code{variable} (as selected on noegletal.dk).
-As per the noegletal.dk documentation, cells with a dash \code{-} as a value is converted to a 0, while cells with a value of \code{M} or \code{U} is converted to \code{NA}, since these represent missing values.
-}
-\examples{
-\dontrun{
-data <- noegletal_tidy("path/to/your/downloaded_file.csv")
-}
+\code{noegletal_tidy} takes as input a csv-file downloaded from noegletal.dk and
+parses it into a tidy \code{\link[tibble:tibble]{tibble::tibble()}}. This \code{\link[tibble:tibble]{tibble::tibble()}} has one row
+for each municipality-year, a \code{muni_code} column, a \code{year} column and a
+column for each \code{variable} (as selected on noegletal.dk).
 
+As per the noegletal.dk documentation, cells with a dash \code{-} as a value is
+converted to a 0, while cells with a value of \code{M} or \code{U} is converted to
+\code{NA}, since these represent missing values.
 }

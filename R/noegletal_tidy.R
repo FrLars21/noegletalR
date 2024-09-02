@@ -1,16 +1,18 @@
 #' Transform a csv file from noegletal.dk into a tidy tibble
 #'
-#' `noegletal_tidy` takes a CSV-file downloaded from noegletal.dk as input and parses it into a tidy `tibble`.
-#' This `tibble` has one row for each municipality-year, a `muni_code` column, a `year` column and a column for each `variable` (as selected on noegletal.dk).
-#' As per the noegletal.dk documentation, cells with a dash `-` as a value is converted to a 0, while cells with a value of `M` or `U` is converted to `NA`, since these represent missing values.
+#' @description
+#' `noegletal_tidy` takes as input a csv-file downloaded from noegletal.dk and
+#' parses it into a tidy [tibble::tibble()]. This [tibble::tibble()] has one row
+#' for each municipality-year, a `muni_code` column, a `year` column and a
+#' column for each `variable` (as selected on noegletal.dk).
+#'
+#' As per the noegletal.dk documentation, cells with a dash `-` as a value is
+#' converted to a 0, while cells with a value of `M` or `U` is converted to
+#' `NA`, since these represent missing values.
 #'
 #' @param file Path to a csv file downloaded from noegletal.dk.
-#' @returns A tidy [tibble::tibble()] with one row for each municipality-year, and one column for each included variable (nøgletal).
-#'
-#' @examples
-#' \dontrun{
-#' data <- noegletal_tidy("path/to/your/downloaded_file.csv")
-#' }
+#' @returns A tidy [tibble::tibble()] with one row for each municipality-year,
+#'   and one column for each included variable (nøgletal).
 #'
 #' @export
 noegletal_tidy <- function(file) {
@@ -19,13 +21,17 @@ noegletal_tidy <- function(file) {
     stop("The file to be converted does not exist: ", file)
   }
 
-  data <- readr::read_delim(file,
-                            delim=";",
-                            locale = readr::locale(encoding = "latin1"),
-                            skip = 2) |>
+  data <- readr::read_delim(
+    file,
+    delim = ";",
+    locale = readr::locale(encoding = "latin1"),
+    skip = 2
+  ) |>
     dplyr::rename(variable = .data$`...1`, muni_code = .data$Kom.nr) |>
     dplyr::filter(!stringr::str_ends(.data$variable, "Kommune") |
-                    !rowSums(is.na(dplyr::across(dplyr::everything()))) > 1)
+                    !rowSums(is.na(dplyr::across(
+                      dplyr::everything()
+                    ))) > 1)
 
   # Insert the correct `variable` in the variable col.
   for (i in seq_len(nrow(data))) {
@@ -34,7 +40,8 @@ noegletal_tidy <- function(file) {
     }
   }
 
-  # Slet rækker der ikke indeholder muni_code (fjerner fodnoter samt variabelrækker)
+  # Remove rows that does not include muni_code (removes footnotes and rows with
+  # only variable headings)
   data <- data |>
     dplyr::filter(!is.na(.data$muni_code))
 
@@ -44,14 +51,25 @@ noegletal_tidy <- function(file) {
 
   # Clean up values
   data <- data |>
-    dplyr::mutate(value = stringr::str_replace_all(.data$value, "\\.", ""), # remove thousand separator
-                  value = stringr::str_replace_all(.data$value, ",", "."),  # Replace commas with periods for proper decimal handling in R.
-                  value = stringr::str_replace_all(.data$value, "-", "0")) |> # According to "noegletal.dk", a dash "-" means 0.
-    dplyr::mutate(value = as.numeric(.data$value)) # Coerce to numeric, values of "M" or "U" (missing, according to Noegletal.dk), can't be coerced and is therefore made NA.
+    dplyr::mutate(
+      # remove thousand separator
+      value = stringr::str_replace_all(.data$value, "\\.", ""),
+      # Replace commas with periods for proper decimal handling in R.
+      value = stringr::str_replace_all(.data$value, ",", "."),
+      # According to "noegletal.dk", a dash "-" means 0.
+      value = stringr::str_replace_all(.data$value, "-", "0")
+    ) |>
+    # Coerce to numeric, values of "M" or "U" (missing, according to
+    # noegletal.dk), can't be coerced and is therefore made NA.
+    dplyr::mutate(value = as.numeric(.data$value))
 
   # Pivot to tidy format
   data <- data |>
-    tidyr::pivot_wider(id_cols = c(.data$muni_code, .data$year), names_from = .data$variable, values_from = .data$value)
+    tidyr::pivot_wider(
+      id_cols = c(.data$muni_code, .data$year),
+      names_from = .data$variable,
+      values_from = .data$value
+    )
 
   return(data)
 }

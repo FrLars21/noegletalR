@@ -6,18 +6,36 @@
 #' @returns HTML content of the response
 #' @noRd
 noegletal_scrape <- function(muni_codes, years, variable_ids) {
-  # From my testing, all these parameters should be provided
-  # for the request to 'noegletal.dk' to be valid.
+  # From my testing, all these parameters should be provided for the request to
+  # 'noegletal.dk' to be valid.
   payload <- list(
-    qUdv = 1, qUdvBasis = 0, qSort = 1, qSortBasis = 0, qSaveAs = 0,
-    qCommand = "Rap", qReform = 1,
+    qUdv = 1,
+    qUdvBasis = 0,
+    qSort = 1,
+    qSortBasis = 0,
+    qSaveAs = 0,
+    qCommand = "Rap",
+    qReform = 1,
     qListAar = paste(years, collapse = ","),
     qListKom = paste(muni_codes, collapse = ","),
     qListNog = paste(variable_ids, collapse = ","),
-    qPreKom = "Alle kommuner", qPreKomNr = 921, qPreNog = "x", qPreNogNr = 0,
-    qPris = 1, qPrisBasis = 0, qKomInddel = 0, qHighlight = 0, qHighl_kom = 0,
-    qVisKunGns = 0, qVers = "24A", qHtmlVers = 43, qLevel = 1, qResVs = 42,
-    qUserResol = "X", qUserAppl = "X", qUserAgent = "X"
+    qPreKom = "Alle kommuner",
+    qPreKomNr = 921,
+    qPreNog = "x",
+    qPreNogNr = 0,
+    qPris = 1,
+    qPrisBasis = 0,
+    qKomInddel = 0,
+    qHighlight = 0,
+    qHighl_kom = 0,
+    qVisKunGns = 0,
+    qVers = "24A",
+    qHtmlVers = 43,
+    qLevel = 1,
+    qResVs = 42,
+    qUserResol = "X",
+    qUserAppl = "X",
+    qUserAgent = "X"
   )
 
   response <- httr::VERB(
@@ -80,10 +98,17 @@ noegletal_parse_html <- function(html_content, n_munis, years) {
 noegletal_wrangle <- function(df) {
   df |>
     tidyr::pivot_longer(cols = 4:ncol(df), names_to = "year") |>
-    dplyr::mutate(value = stringr::str_replace_all(.data$value, "\\.", ""), # remove thousand separator
-                  value = stringr::str_replace_all(.data$value, ",", "."),  # Replace commas with periods for proper decimal handling in R.
-                  value = stringr::str_replace_all(.data$value, "-", "0")) |> # According to "noegletal.dk", a dash "-" means 0.
-    dplyr::mutate(value = as.numeric(.data$value)) |> # Coerce to numeric, values of "M" (missing, according to Noegletal.dk), can't be coerced and is therefore made NA.
+    dplyr::mutate(
+      # remove thousand separator
+      value = stringr::str_replace_all(.data$value, "\\.", ""),
+      # Replace commas with periods for proper decimal handling in R.
+      value = stringr::str_replace_all(.data$value, ",", "."),
+      # According to "noegletal.dk", a dash "-" means 0.
+      value = stringr::str_replace_all(.data$value, "-", "0")
+    ) |>
+    # Coerce to numeric, values of "M" (missing, according to Noegletal.dk),
+    # can't be coerced and is therefore made NA.
+    dplyr::mutate(value = as.numeric(.data$value)) |>
     tidyr::pivot_wider(
       id_cols = c(.data$muni_code, .data$muni_name, .data$year),
       names_from = .data$variable,
@@ -103,7 +128,8 @@ noegletal_get <- function(muni_codes = ALLOWED_MUNI_CODES,
                           variable_ids) {
   validate_input(muni_codes, years, variable_ids)
 
-  years <- sort(years) # sort years in chronological order for proper alignment.
+  # sort years in chronological order for proper alignment.
+  years <- sort(years)
 
   message("Getting requested data from noegletal.dk ...")
 
@@ -130,6 +156,8 @@ validate_input <- function(muni_codes, years, variable_ids) {
 
   n_selected_rows <- length(muni_codes) * length(years) * length(variable_ids)
   if (n_selected_rows > 25000) {
+    # TODO: as a more helpful message, write how many rows that was selected
+    # including the calculation.
     stop("Too many rows selected. Maximum allowed is 25000.")
   }
 }

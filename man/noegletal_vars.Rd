@@ -7,18 +7,26 @@
 noegletal_vars()
 }
 \value{
-A 'tibble' where each row is a variable and the columns are 'variable_id', 'variable_name' and 'variable_definition'.
+A 'tibble' where each row is a variable and the columns are
+'variable_id', 'variable_name' and 'variable_definition'.
 }
 \description{
-When called, \code{noegletal_vars()} will go to 'nøgletal.dk' to retrieve an updated list of available variables (nøgletal) including their definitions
-and return this data as a \code{\link[tibble:tibble]{tibble::tibble()}} with a row for each variable and three columns: 'variable_id', 'variable_name', 'variable_definition'.
+When called, \code{noegletal_vars()} will go to 'nøgletal.dk' to retrieve an
+updated list of available variables (nøgletal) including their definitions
+and return this data as a \code{\link[tibble:tibble]{tibble::tibble()}} with a row for each variable and
+three columns: 'variable_id', 'variable_name', 'variable_definition'.
 
-The primary use of the function is to get the ID's for the variables that a user wishes to retrieve with the \code{\link[=noegletal_get]{noegletal_get()}} function.
-Additionally, the function is also useful for probing potential variables (including their definitions) that might be of interest for analysis.
+The primary use of the function is to get the ID's for the variables that a
+user wishes to retrieve with the \code{\link[=noegletal_get]{noegletal_get()}} function.
+Additionally, the function is also useful for probing potential variables
+(including their definitions) that might be of interest for analysis.
 
-A useful way to browse the list is to run the following code from the RStudio console \code{View(noegletalR::noegletal_vars())}
-which will open the interactive data viewer in RStudio.
+A useful way to browse the list is to run the following code from the RStudio
+console \code{View(noegletalR::noegletal_vars())} which will open the interactive
+data viewer in RStudio.
 
-Since the list of variables is retrieved anew on every call, \code{noegletal_vars()} can only be executed when connected to the internet.
-Response caching is on the development roadmap for the \link{noegletalR} package, but is not implemented yet and does come with its own set of challenges.
+Since the list of variables is retrieved anew on every call,
+\code{noegletal_vars()} can only be executed when connected to the internet.
+Response caching is on the development roadmap for the \link{noegletalR} package,
+but is not implemented yet and does come with its own set of challenges.
 }
