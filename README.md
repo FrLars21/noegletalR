@@ -8,14 +8,19 @@
 [![R-CMD-check](https://github.com/FrLars21/noegletalR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FrLars21/noegletalR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of noegletalR is to provide a friendly interface between R and
+The goal of noegletalR is to provide a simple interface between R and
 ‘noegletal.dk’, a Danish government website providing many interesting
 variables on Danish municipalities.
 
 ## Installation
 
-You can install the development version of noegletalR from
-[GitHub](https://github.com/) with:
+``` r
+install.packages("noegletalR")
+```
+
+### Development version
+
+You can install the development version of noegletalR from GitHub with:
 
 ``` r
 # install.packages("pak")
@@ -28,7 +33,7 @@ In no particular order, these are the features that I will work towards
 implementing in the near future:
 
 - Full test coverage for all functions (especially ensuring accurate
-  parsing of ‘noegletal.dk’ data!).
+  parsing of ‘noegletal.dk’ data in diverse situations!).
 - More thoughrough validation and error handling (especially for failed
   http requests).
 - Response caching (perhaps 1 day for both `noegletal_get()` and

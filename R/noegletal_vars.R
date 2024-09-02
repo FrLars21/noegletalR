@@ -20,7 +20,7 @@
 #' Response caching is on the development roadmap for the [noegletalR] package,
 #' but is not implemented yet and does come with its own set of challenges.
 #'
-#' @returns A 'tibble' where each row is a variable and the columns are
+#' @returns A [tibble::tibble()] where each row is a variable and the columns are
 #'   'variable_id', 'variable_name' and 'variable_definition'.
 #' @export
 noegletal_vars <- function() {

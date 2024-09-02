@@ -121,7 +121,7 @@ noegletal_wrangle <- function(df) {
 #' @param muni_codes Vector of municipality codes
 #' @param years Vector of years
 #' @param variable_ids Vector of variable IDs
-#' @returns Tidy tibble with requested data
+#' @returns Tidy [tibble::tibble()] with requested data
 #' @export
 noegletal_get <- function(muni_codes = ALLOWED_MUNI_CODES,
                           years = ALLOWED_YEARS,

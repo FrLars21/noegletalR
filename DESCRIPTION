@@ -1,10 +1,12 @@
 Package: noegletalR
-Title: Tidy Tibbles of Noegletal
+Title: Tidy 'Tibbles' of 'Noegletal'
 Version: 0.1.0
 Authors@R: 
-    person("Frederik", "Larsen", , "frlars21@student.aau.dk", role = c("aut", "cre"))
-Description: A simple R utility that parses csv files from noegletal.dk
-    into tidy tibbles.
+    person("Frederik", "Larsen", , "frlars21@student.aau.dk", role = c("aut", "cre", "cph"))
+Description: Work with data from 'noegletal.dk' in a tidy manner. Tidy
+    up previously downloaded data or retrieve new data directly from the
+    comfort of R. You can also browse an up-to-date list of available
+    data, including thorough variable descriptions.
 License: MIT + file LICENSE
 Imports: 
     dplyr,

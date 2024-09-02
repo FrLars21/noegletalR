@@ -4,12 +4,12 @@
 \name{noegletalR-package}
 \alias{noegletalR}
 \alias{noegletalR-package}
-\title{noegletalR: Tidy Tibbles of Noegletal}
+\title{noegletalR: Tidy 'Tibbles' of 'Noegletal'}
 \description{
-A simple R utility that parses csv files from noegletal.dk into tidy tibbles.
+Work with data from 'noegletal.dk' in a 'tidy' manner. Tidy up previously downloaded data or retrieve new data directly from the comfort of R. You can even browse an up-to-date list of available data, including thorough variable descriptions.
 }
 \author{
-\strong{Maintainer}: Frederik Larsen \email{frlars21@student.aau.dk}
+\strong{Maintainer}: Frederik Larsen \email{frlars21@student.aau.dk} [copyright holder]
 
 }
 \keyword{internal}
