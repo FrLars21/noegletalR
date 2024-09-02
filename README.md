@@ -4,6 +4,8 @@
 # noegletalR
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/FrLars21/noegletalR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FrLars21/noegletalR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of noegletalR is to provide a friendly interface between R and

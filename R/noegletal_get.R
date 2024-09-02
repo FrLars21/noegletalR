@@ -145,7 +145,7 @@ noegletal_get <- function(muni_codes = ALLOWED_MUNI_CODES,
 #' @param muni_codes Vector of municipality codes
 #' @param years Vector of years
 #' @param variable_ids Vector of variable IDs
-#' @returns void
+#' @returns None
 #' @noRd
 validate_input <- function(muni_codes, years, variable_ids) {
   if (!all(muni_codes %in% ALLOWED_MUNI_CODES)) {
