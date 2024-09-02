@@ -18,8 +18,11 @@ noegletal_get(
 \item{variable_ids}{Vector of variable IDs}
 }
 \value{
-Tidy tibble with requested data
+Tidy \code{\link[tibble:tibble]{tibble::tibble()}} with requested data
 }
 \description{
 Get data from noegletal.dk
+}
+\examples{
+noegletal_get(muni_codes = c(101, 155), years = 2018:2024, variable_ids = c(001))
 }

@@ -23,6 +23,8 @@
 #' @returns A [tibble::tibble()] where each row is a variable and the columns are
 #'   'variable_id', 'variable_name' and 'variable_definition'.
 #' @export
+#' @examples
+#' noegletal_vars()
 noegletal_vars <- function() {
 
   source_code <- rvest::read_html("https://www.noegletal.dk/noegletal/ntInfo24A.html",

@@ -7,7 +7,7 @@
 noegletal_vars()
 }
 \value{
-A 'tibble' where each row is a variable and the columns are
+A \code{\link[tibble:tibble]{tibble::tibble()}} where each row is a variable and the columns are
 'variable_id', 'variable_name' and 'variable_definition'.
 }
 \description{
@@ -29,4 +29,7 @@ Since the list of variables is retrieved anew on every call,
 \code{noegletal_vars()} can only be executed when connected to the internet.
 Response caching is on the development roadmap for the \link{noegletalR} package,
 but is not implemented yet and does come with its own set of challenges.
+}
+\examples{
+noegletal_vars()
 }

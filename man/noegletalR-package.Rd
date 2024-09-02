@@ -6,7 +6,15 @@
 \alias{noegletalR-package}
 \title{noegletalR: Tidy 'Tibbles' of 'Noegletal'}
 \description{
-Work with data from 'noegletal.dk' in a 'tidy' manner. Tidy up previously downloaded data or retrieve new data directly from the comfort of R. You can even browse an up-to-date list of available data, including thorough variable descriptions.
+Work with data from 'noegletal.dk' in a tidy manner. Tidy up previously downloaded data or retrieve new data directly from the comfort of R. You can also browse an up-to-date list of available data, including thorough variable descriptions.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/FrLars21/noegletalR}
+  \item Report bugs at \url{https://github.com/FrLars21/noegletalR/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Frederik Larsen \email{frlars21@student.aau.dk} [copyright holder]

@@ -15,6 +15,10 @@
 #'   and one column for each included variable (nøgletal).
 #'
 #' @export
+#' @examples
+#' \dontrun{
+#' noegletal_tidy(file = 'path/to/csv_file.csv')
+#' }
 noegletal_tidy <- function(file) {
 
   if (!file.exists(file)) {

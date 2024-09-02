@@ -23,3 +23,8 @@ As per the noegletal.dk documentation, cells with a dash \code{-} as a value is
 converted to a 0, while cells with a value of \code{M} or \code{U} is converted to
 \code{NA}, since these represent missing values.
 }
+\examples{
+\dontrun{
+noegletal_tidy(file = 'path/to/csv_file.csv')
+}
+}

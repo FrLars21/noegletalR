@@ -123,6 +123,8 @@ noegletal_wrangle <- function(df) {
 #' @param variable_ids Vector of variable IDs
 #' @returns Tidy [tibble::tibble()] with requested data
 #' @export
+#' @examples
+#' noegletal_get(muni_codes = c(101, 155), years = 2018:2024, variable_ids = c(001))
 noegletal_get <- function(muni_codes = ALLOWED_MUNI_CODES,
                           years = ALLOWED_YEARS,
                           variable_ids) {
