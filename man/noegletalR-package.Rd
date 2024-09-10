@@ -4,9 +4,9 @@
 \name{noegletalR-package}
 \alias{noegletalR}
 \alias{noegletalR-package}
-\title{noegletalR: Tidy 'Tibbles' of 'Noegletal'}
+\title{noegletalR: Tidy Tibbles of Noegletal}
 \description{
-Work with data from 'noegletal.dk' in a tidy manner. Tidy up previously downloaded data or retrieve new data directly from the comfort of R. You can also browse an up-to-date list of available data, including thorough variable descriptions.
+Work with data from \url{https://noegletal.dk} in a tidy manner. Tidy up previously downloaded data or retrieve new data directly from the comfort of R. You can also browse an up-to-date list of available data, including thorough variable descriptions.
 }
 \seealso{
 Useful links:

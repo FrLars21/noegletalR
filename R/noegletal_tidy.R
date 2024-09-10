@@ -16,9 +16,11 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
-#' noegletal_tidy(file = 'path/to/csv_file.csv')
-#' }
+#' path_to_file <- system.file("extdata",
+#'                             "nwRap-10Sep2024-101803.csv",
+#'                             package = "noegletalR",
+#'                             mustWork = TRUE)
+#' noegletal_tidy(file = path_to_file)
 noegletal_tidy <- function(file) {
 
   if (!file.exists(file)) {
@@ -51,6 +53,7 @@ noegletal_tidy <- function(file) {
 
   # Pivot to long format
   data <- data |>
+    dplyr::mutate(dplyr::across(3:ncol(data), as.character)) |>
     tidyr::pivot_longer(cols = 3:ncol(data), names_to = "year")
 
   # Clean up values

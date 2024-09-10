@@ -24,7 +24,9 @@ converted to a 0, while cells with a value of \code{M} or \code{U} is converted 
 \code{NA}, since these represent missing values.
 }
 \examples{
-\dontrun{
-noegletal_tidy(file = 'path/to/csv_file.csv')
-}
+path_to_file <- system.file("extdata",
+                            "nwRap-10Sep2024-101803.csv",
+                            package = "noegletalR",
+                            mustWork = TRUE)
+noegletal_tidy(file = path_to_file)
 }
